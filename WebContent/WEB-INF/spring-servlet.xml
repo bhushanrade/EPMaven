@@ -29,15 +29,25 @@
 	</bean> -->
 	 
 	 
-	  <bean id="dataSrc" class="org.apache.commons.dbcp2.BasicDataSource"
+<!--	  <bean id="dataSrc" class="org.apache.commons.dbcp2.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url"
-			value="jdbc:mysql://172.30.226.104:3306/sampledb" />
+			value="jdbc:mysql://172.30.2.169:3306/sampledb" />
 		<property name="username" value="admin" />
 		<property name="password" value="root" />
-	</bean>
+	</bean>	-->
 	  
+	  
+	  
+	    <bean id="dataSrc" class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://${env.OPENSHIFT_MYSQL_DB_HOST}:{env.OPENSHIFT_MYSQL_DB_PORT}/sampledb" />
+		<property name="username" value="${env.OPENSHIFT_MYSQL_DB_USERNAME}" />
+		<property name="password" value="${env.OPENSHIFT_POSTGRESQL_DB_PASSWORD}" />
+	</bean>
 	<!-- <mvc:resources mapping="/resources/**" location="/resources/theme1/" cache-period="31556926"/> -->
         
 	<!-- hibernate configuration -->
